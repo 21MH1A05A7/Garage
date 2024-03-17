@@ -1,0 +1,81 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="password"],
+  .login-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-container input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .login-options {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center login options horizontally */
+    cursor: pointer;
+
+  }
+  .login-options-grid{
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .login-option {
+    display: grid;
+    align-items: center;
+    margin: 10px; /* Add margin between login options */
+  }
+  .login-option img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    .login-container {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .login-container {
+      max-width: 300px;
+    }
+  }

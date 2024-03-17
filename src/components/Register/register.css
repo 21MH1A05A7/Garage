@@ -1,0 +1,66 @@
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .register-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .register-container input[type="text"],
+  .register-container input[type="email"],
+  .register-container input[type="password"],
+  .register-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .register-container input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 500px) {
+    .register-container {
+      padding: 20px;
+      max-width: 350px; /* Adjust container width for smaller screens */
+    }
+  }
+  @media (max-width: 600px) {
+    .toast-container {
+      width: 80%; /* Adjust width for smaller screens */
+      max-width: none; /* Remove max-width constraint */
+      bottom: 5%; /* Adjust position */
+      right: 10%; /* Adjust position */
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 600px) {
+    .toast-container {
+      width: 95vw; /* Set width to 95% of the viewport width */
+      max-width: none; /* Remove max-width constraint */
+      bottom: 10px; /* Adjust position to sit at the bottom */
+      right: 50%; /* Center horizontally */
+      transform: translateX(50%); /* Adjust horizontal positioning */
+      font-size: 12px; /* Adjust font size */
+    }
+  }
