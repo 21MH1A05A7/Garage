@@ -84,34 +84,48 @@ const voucherController={
 
 
     getVoucher:async(req,res,next)=>{
-        try {
-            const req_id=req.user.id;
-            const data=await Voucher.find({status:req_id});
-            if(!data){
-                res.send("Data Not Found or Enter Valid Id");
+        let success=false;
+        if(req.user){
+            try {
+                const req_id=req.user.id;
+                const data=await Voucher.find({status:req_id});
+                if(!data){
+                    res.send("Data Not Found or Enter Valid Id");
+                }
+                success=true;
+                res.send({data,success});
+            } catch (error) {
+                res.status(400,"Something went wrong");
             }
-            res.send(data);
-        } catch (error) {
-            res.status(400,"Something went wrong");
+        }
+        else{
+            res.send({success});
         }
     },
 
 
     getOfficialsVochers:async(req,res)=>{
-        try {
-            const req_id=req.user.type; //type defines the type of member
-            if(req_id!="0"){
-                const data=await Voucher.find({person:req_id});
-            if(!data){
-                res.send("Data Not Found or Enter Valid Id");
+        let success=false;
+        if(req.user){
+            try {
+                const req_id=req.user.type; //type defines the type of member
+                if(req_id!="0"){
+                    const data=await Voucher.find({person:req_id});
+                    if(!data){
+                        res.send("Data Not Found or Enter Valid Id");
+                    }
+                    success=true;
+                    res.send({data,success});
+                }
+                else{
+                    res.send({success});
+                }
+            } catch (error) {
+                res.status(400,"Something went wrong");
             }
-            res.send(data);
-            }
-            else{
-                res.send("He is a Staff Member");
-            }
-        } catch (error) {
-            res.status(400,"Something went wrong");
+        }
+        else{
+            res.send({success});
         }
     },
 

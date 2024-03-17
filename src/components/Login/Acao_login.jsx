@@ -3,7 +3,7 @@ import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-const Cashier_login = () => {
+const Acao_login = () => {
   
     const [logindata,setlogindata] = useState({
     username:'',
@@ -13,41 +13,40 @@ const Cashier_login = () => {
   const handleLogin = (e) => {
     e.preventDefault()
     if(logindata.username===""){
-      toast.error("Please fill the Username");
+      toast.error("Please fill the Username")
     }
     else if(logindata.password===''){
-      toast.error("Please fill the Password");
+      toast.error("Please fill the Password")
     }
     else{
-        axios.post("http://localhost:5000/officials/login",logindata)
-        .then((res)=>{                                                                   
-            console.log(res);
-            const data=res.data;
-            // console.log(data);
-            if(data.success===false){
-                toast.error("Check the Credentials");
-            }
-            else{
-                const id=res.data.DB_User._id;
-                console.log(id);
-                //localStorage.setItem("id",id);
-                
-                toast.success("Successfully logged in");
-                console.log("Successfully logged in");
-                
-                // Navigate('/');
-            }
-        })
-        .catch((err)=>{
-            console.log("Api Cannot be Fetched");
-        })
+      axios.post("http://localhost:5000/staffauth/login",logindata)
+      .then((res)=>{
+        console.log(res);
+        const data=res.data;
+        // console.log(data);
+        if(data.success===false){
+            toast.error("Check the Credentials");
+        }
+        else{
+            const id=res.data.DB_User._id;
+            console.log(id);
+            // navigate
+            toast.success("Successfully logged in");
+            console.log("Successfully logged in");
+            // Navigate('/');
+        }
+    })
+      .catch((err)=>{
+        console.log("Api Cannot be Fetched");
+      })
     }
-  };
+  }
+  
 
   return (
     <div className="login-page">
       <div className="login-container">
-        <h2> Cashier  Login</h2>
+        <h2> ACAO  Login</h2>
         <form onSubmit={handleLogin}>
           <input
             type="text"
@@ -71,16 +70,16 @@ const Cashier_login = () => {
                 <span>Staff</span>
               </div>
               <div className="login-option">
-                <Link to='/Gm-login'><img alt="ACAO" /></Link>
+                <Link to='/Gm-login'><img  alt="ACAO" /></Link>
                 <span>GM</span>
               </div>
               <div className="login-option">
-                <Link to='/acao-login'><img alt="VC" /></Link>
-                <span>ACAO</span>
+                <Link to='/vc-login'><img  alt="VC" /></Link>
+                <span>VC</span>
               </div>
               <div className="login-option">
-                <Link to='/vc-login'><img alt="Cashier" /></Link>
-                <span>VC</span>
+                <Link to='/cashier-login'><img alt="Cashier" /></Link>
+                <span>Cashier</span>
               </div>
             </div>
           </div>
@@ -91,4 +90,4 @@ const Cashier_login = () => {
   );
 };
 
-export default Cashier_login;
+export default Acao_login;
