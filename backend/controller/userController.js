@@ -8,14 +8,14 @@ const {body,validationResult}=require("express-validator");
 const UserApi = {
     staffLogin : async (req,res,next)=>{
         console.log(req.body);
-        const {username,password}=req.body;
+        const {username,password,type}=req.body;
     // const hashedPassword=await bcrypt.hash(password,10);
     /// Connect to DB and check for the user credentials;
     try{
         // let remote_user=await User.findOne(username); // user name from the database using findOne
         // console.log("hi");
         let success=false;
-        User.findOne({username:username})
+        User.findOne({username:username,type:type})
         .then(async (DB_User)=>{
             if(DB_User){
                 // console.log(DB_User);
@@ -67,6 +67,10 @@ const UserApi = {
             res.send("Check the Credentials");
         }
         
+    },
+
+    officialLogin:async(req,res,next)=>{
+
     }
 
 }

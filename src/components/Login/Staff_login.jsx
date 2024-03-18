@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const Staff_login = () => {
+
+  const navigate=useNavigate();
+
   const [logindata,setlogindata] = useState({
     username:'',
-    password:''
+    password:'',
+    type:'0'
   });
 
   const handleLogin = (e) => {
     e.preventDefault()
     // console.log("hi");
     if(logindata.username===""){
+      localStorage.removeItem("id");
       toast.error("Please fill the Username")
     }
     else if(logindata.password===''){
@@ -25,7 +30,7 @@ const Staff_login = () => {
       console.log(logindata)
       //api  
       axios.post("http://localhost:5000/staffauth/login",logindata)
-      .then((res)=>{
+      .then(async (res)=>{
         console.log(res);
         const data=res.data;
         // console.log(data);
@@ -36,9 +41,10 @@ const Staff_login = () => {
             const id=res.data.DB_User._id;
             console.log(id);
             // navigate
+            localStorage.setItem("id",id);
             toast.success("Successfully logged in");
             console.log("Successfully logged in");
-            // Navigate('/');
+            navigate('/staff');
         }
     })
     .catch((err)=>{

@@ -6,7 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 import { useEffect } from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import official_validate from  '../../official_validate'
+
 
 const Register = () => {
   const [registerdata,setregisterdata] = useState({
@@ -42,14 +44,13 @@ const Register = () => {
   };
   const navigate = useNavigate();
   useEffect(()=>{
-    // const a="hi";
     const data=localStorage.getItem("id");
-    // const d=validate(data); // check if the id is gm or not
-    if(data){
+    const d=official_validate(data); // check if the id is gm or not
+    if(!d){
         navigate("/staff-register");
     }
     else{
-        navigate("/");
+        navigate("/Gm-login");
     }
   },[])
 

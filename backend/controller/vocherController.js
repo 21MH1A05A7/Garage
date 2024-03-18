@@ -26,11 +26,18 @@ const person_to_person={
 
 const voucherController={
     addData:async (req,res,next)=>{
+        // console.log(req.headers.id);
         const id=await voucher_codes.generate({
             length:3,
             charset:"0123456789"
         });
-        const {name_of_the_particulars,person_name,purpose_of_voucher,date,amount,remarks}=req.body;
+        const name_of_the_particulars=req.body.name_of_the_particulars;
+        const person_name=req.body.person_name;
+        const purpose_of_voucher=req.body.purpose_of_voucher;
+        const date=req.body.date;
+        const amount=req.body.amount;
+        const remarks=req.body.remarks;
+        const amount_in_words = await convert_to_words(amount);
         const v_id="GHWX"+id[0];
         const d={
             voucher_id:v_id,
@@ -39,9 +46,9 @@ const voucherController={
             purpose_of_voucher:purpose_of_voucher,
             date:date,
             amount:amount,
-            amount_words:convert_to_words(amount),
+            amount_words:amount_in_words,
             remarks:remarks,
-            status:req.user.id,
+            status:req.user._id,
             person:"0"
         }
         const voucher_exist=await Voucher.findOne({voucher_id:v_id});
@@ -65,15 +72,21 @@ const voucherController={
         }
     },
 
-
     getVoucherById:async(req,res)=>{  // id
+        let success=false;
         try{
-            const data=await Voucher.find({voucher_id:req.params.id});
-            console.log(data);
-            if(data){
-                res.send(data); 
-            }
-            res.send("No Data Found");
+            Voucher.find({voucher_id:req.params.id})
+            .then((data)=>{
+                console.log(data);
+                if(data){
+                    success=true;
+                    res.send({data,success}); 
+                }
+            })
+            .catch((err)=>{
+                res.send({success});
+            })
+            
         }
     
         catch(err){

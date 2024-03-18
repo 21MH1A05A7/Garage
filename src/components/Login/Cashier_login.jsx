@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 const Cashier_login = () => {
   
     const [logindata,setlogindata] = useState({
     username:'',
-    password:''
+    password:'',
+    type:'4'
   });
 
   const handleLogin = (e) => {
@@ -67,7 +69,7 @@ const Cashier_login = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
               <div className="login-option">
-                <Link to='/'><img alt="GM" /></Link>
+                <Link to='/staff'><img alt="GM" /></Link>
                 <span>Staff</span>
               </div>
               <div className="login-option">

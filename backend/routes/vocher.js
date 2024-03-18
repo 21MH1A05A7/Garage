@@ -38,10 +38,10 @@ router.get('/getAllVochers',voucherController.getAllVochers);
 
 //get user by vocher_id
 //write
-router.get('/getVocherId/:id',voucherController.getVoucherById);
+router.get('/getVocherId/:id',fetchUser,voucherController.getVoucherById);
 
 // get vochers of a particular garage staff member
-router.get('/getVochers',fetchUser,voucherController.getVoucher);
+router.get('/getVochers',fetchUser,voucherController.getVoucher); 
 
 //officials information fetching
 router.get('/officialsVocher',fetchUser,voucherController.getOfficialsVochers);

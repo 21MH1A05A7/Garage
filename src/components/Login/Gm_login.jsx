@@ -3,11 +3,14 @@ import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Gmlogin = () => {
   const [logindata,setlogindata] = useState({
     username:'',
-    password:''
+    password:'',
+    type:'1'
   });
 
   const handleLogin = (e) => {
@@ -25,17 +28,17 @@ const Gmlogin = () => {
             const data=res.data;
             // console.log(data);
             if(data.success===false){
+                // toast.success("")
                 toast.error("Check the Credentials");
             }
             else{
                 const id=res.data.DB_User._id;
                 console.log(id);
-                //localStorage.setItem("id",id);
-                
+                // localStorage.setItem("id",id); //MAIN
                 toast.success("Successfully logged in");
-                console.log("Successfully logged in");
-                
-                // Navigate('/');
+                // console.log(id);
+                // console.log("Successfully logged in");
+                // navigate('/');
             }
         })
         .catch((err)=>{
@@ -67,7 +70,7 @@ const Gmlogin = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
               <div className="login-option">
-                <Link to='/'><img alt="GM" /></Link>
+                <Link to='/staff-login'><img alt="sTAFF" /></Link>
                 <span>Staff</span>
               </div>
               <div className="login-option">

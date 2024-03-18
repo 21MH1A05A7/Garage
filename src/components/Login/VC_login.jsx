@@ -3,12 +3,14 @@ import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Vc_login = () => {
   
     const [logindata,setlogindata] = useState({
     username:'',
-    password:''
+    password:'',
+    type:'3'
   });
 
   const handleLogin = (e) => {

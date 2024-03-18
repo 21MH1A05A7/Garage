@@ -3,11 +3,13 @@ import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 const Acao_login = () => {
   
     const [logindata,setlogindata] = useState({
     username:'',
-    password:''
+    password:'',
+    type:'2'
   });
 
   const handleLogin = (e) => {
@@ -66,7 +68,7 @@ const Acao_login = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
               <div className="login-option">
-                <Link to='/'><img alt="GM" /></Link>
+                <Link to='/staff'><img alt="GM" /></Link>
                 <span>Staff</span>
               </div>
               <div className="login-option">
