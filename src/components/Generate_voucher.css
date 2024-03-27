@@ -1,0 +1,24 @@
+.container{
+    background-color:whitesmoke;
+    height: 75vh;
+    width: 75vw;
+    padding: 15px;
+    box-shadow: 5px 5px  #007bff;
+}
+button{
+    color: black;
+    background-color: #007bff;
+}
+@media (max-width:768px) {
+    .container{
+        box-shadow: none;
+        background-color: white;
+    }
+    
+}
+@media (max-width:1440px){
+    .container{ 
+        height: 98vh;
+
+    }
+}

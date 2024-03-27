@@ -49,6 +49,9 @@ let generate_voucher = mongoose.Schema({
     },
     paid_on:{
         type:String
+    },
+    image:{
+        type:String
     }
 });
 

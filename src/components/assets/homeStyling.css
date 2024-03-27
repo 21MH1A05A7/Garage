@@ -1,0 +1,50 @@
+*{
+    margin: 0px;
+    padding:0px;
+}
+.full{
+    background:url('background.jpeg');
+    background-repeat:no-repeat;
+    height:100vh;
+    background-size:cover;
+    width:100%;
+    background-position:100%;
+
+}
+@keyframes glow {
+    0% {
+        background-color:#111cee;
+        box-shadow: 0 0 5px #0be3dc;
+    }
+    50% {
+        background-color: #0ee1ec;
+        box-shadow: 0 0 20px #0998d5;
+      }
+    100% {
+        background-color: #1073ec63;
+        box-shadow: 0 0 5px #0a15e2;
+      }   
+}
+.a1{
+    color:white;
+    height:40px;
+    width:100px;
+    border-radius:20px;
+    animation: glow 1500ms infinite;
+}
+.a2{
+    color:yellow;
+    font-family:"Poppins",sans-serif;
+    font-size:100px;
+    line-height:1.1;
+    display:flex;
+    flex-direction: column;
+    
+}
+.a3{
+    color:yellow;
+    font-family:"Poppins",sans-serif;
+    font-size:100px;
+    line-height:1;
+
+}

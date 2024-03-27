@@ -4,6 +4,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import Gm_icon from '../assets/GM.jpeg';
+import Cash_icon from '../assets/Cashier.jpeg'
+import Staff from '../assets/Staff.jpeg';
+import Vc from '../assets/VC.jpeg';
 
 const Vc_login = () => {
   
@@ -13,6 +18,7 @@ const Vc_login = () => {
     type:'3'
   });
 
+  const navigate=useNavigate();
   const handleLogin = (e) => {
     e.preventDefault()
     if(logindata.username===""){
@@ -31,12 +37,13 @@ const Vc_login = () => {
               toast.error("Check the Credentials");
           }
           else{
-              const id=res.data.DB_User._id;
-              console.log(id);
-              // navigate
-              toast.success("Successfully logged in");
-              console.log("Successfully logged in");
-              // Navigate('/');
+            const id=res.data.DB_User._id;
+            console.log(id);
+            // navigate
+            localStorage.setItem("id",id);
+            toast.success("Successfully logged in");
+            console.log("Successfully logged in");
+            navigate('/vc');
           }
       })
       .catch((err)=>{
@@ -68,19 +75,19 @@ const Vc_login = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
               <div className="login-option">
-                <Link to='/'><img alt="GM" /></Link>
+                <Link to='/staff-login'><img alt="staff"  src={Staff} /></Link>
                 <span>Staff</span>
               </div>
               <div className="login-option">
-                <Link to='/Gm-login'><img alt="ACAO" /></Link>
+                <Link to='/Gm-login'><img alt="GM" src={Gm_icon} /></Link>
                 <span>GM</span>
               </div>
               <div className="login-option">
-                <Link to='/acao-login'><img alt="VC" /></Link>
+                <Link to='/acao-login'><img alt="ACOA" src={Vc}/></Link>
                 <span>ACAO</span>
               </div>
               <div className="login-option">
-                <Link to='/cashier-login'><img alt="Cashier" /></Link>
+                <Link to='/cashier-login'><img alt="Cashier" src={Cash_icon} /></Link>
                 <span>Cashier</span>
               </div>
             </div>

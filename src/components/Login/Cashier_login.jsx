@@ -3,16 +3,25 @@ import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Gm_icon from '../assets/GM.jpeg';
+import Cash_icon from '../assets/Cashier.jpeg'
+import Staff from '../assets/Staff.jpeg';
+import Vc from '../assets/VC.jpeg';
+
+
+
 const Cashier_login = () => {
-  
+  const navigate=useNavigate();
     const [logindata,setlogindata] = useState({
     username:'',
     password:'',
     type:'4'
   });
 
-  const handleLogin = (e) => {
+  const handleLogin = (e) => { 
     e.preventDefault()
     if(logindata.username===""){
       toast.error("Please fill the Username");
@@ -30,14 +39,13 @@ const Cashier_login = () => {
                 toast.error("Check the Credentials");
             }
             else{
-                const id=res.data.DB_User._id;
-                console.log(id);
-                //localStorage.setItem("id",id);
-                
-                toast.success("Successfully logged in");
-                console.log("Successfully logged in");
-                
-                // Navigate('/');
+              const id=res.data.DB_User._id;
+              console.log(id);
+              // navigate
+              localStorage.setItem("id",id);
+              toast.success("Successfully logged in");
+              console.log("Successfully logged in");
+              navigate('/cashier');
             }
         })
         .catch((err)=>{
@@ -45,6 +53,13 @@ const Cashier_login = () => {
         })
     }
   };
+
+  // useEffect(()=>{
+  //   const id=localStorage.getItem('id');
+  //   if(id){
+  //     navigate('/cashier');
+  //   }
+  // },[])
 
   return (
     <div className="login-page">
@@ -69,19 +84,19 @@ const Cashier_login = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
               <div className="login-option">
-                <Link to='/staff'><img alt="GM" /></Link>
+                <Link to='/staff-login'><img alt="staff" src={Staff} /></Link>
                 <span>Staff</span>
               </div>
               <div className="login-option">
-                <Link to='/Gm-login'><img alt="ACAO" /></Link>
+                <Link to='/Gm-login'><img alt="GM" src={Gm_icon}/></Link>
                 <span>GM</span>
               </div>
               <div className="login-option">
-                <Link to='/acao-login'><img alt="VC" /></Link>
+                <Link to='/acao-login'><img alt="ACOA" src={Vc}/></Link>
                 <span>ACAO</span>
               </div>
               <div className="login-option">
-                <Link to='/vc-login'><img alt="Cashier" /></Link>
+                <Link to='/vc-login'><img alt="vc" src={Cash_icon}/></Link>
                 <span>VC</span>
               </div>
             </div>

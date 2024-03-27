@@ -13,9 +13,15 @@ router.post('/validate',async(req,res,next)=>{
         let success=false;
         User.findOne({_id:req.body.id})
         .then((data)=>{
-            success=true;
+            if(data.type==='0'){
+                success=true;
             console.log(data);
             res.send({data,success});
+            }
+            else{
+                res.send({success});
+            }
+            
         })
         .catch((err)=>{
             res.send({success});
@@ -24,6 +30,7 @@ router.post('/validate',async(req,res,next)=>{
         res.send(400,"Server is not Working");
     }
 })
+
 
 
 module.exports=router;

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './staff.login.css'; // Import the CSS file
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
+import Gm_icon from '../assets/GM.jpeg';
+import Cash_icon from '../assets/Cashier.jpeg'
+import Staff from '../assets/Staff.jpeg';
+import Vc from '../assets/VC.jpeg';
+
 
 
 const Staff_login = () => {
@@ -20,7 +25,6 @@ const Staff_login = () => {
     e.preventDefault()
     // console.log("hi");
     if(logindata.username===""){
-      localStorage.removeItem("id");
       toast.error("Please fill the Username")
     }
     else if(logindata.password===''){
@@ -53,6 +57,13 @@ const Staff_login = () => {
     }
   };
 
+  // useEffect(()=>{
+  //   const id=localStorage.getItem('id');
+  //   if(id){
+  //     navigate('/staff');
+  //   }
+  // },[])
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -76,19 +87,19 @@ const Staff_login = () => {
             <h3>Login As</h3>
             <div className="login-options-grid">
                 <div className="login-option">
-                  <Link to='/Gm-login'><img alt="GM" /></Link>
+                  <Link to='/Gm-login'><img alt="GM" src={Gm_icon}/></Link>
                   <span className="GM">GM</span>
                 </div>
               <div className="login-option">
-                <Link to='/acao-login'><img  alt="ACAO" /></Link>
+                <Link to='/acao-login'><img  alt="ACAO" src={Staff}/></Link>
                 <span>ACAO</span>
               </div>
               <div className="login-option">
-                <Link to='/vc-login'><img  alt="VC" /></Link>
+                <Link to='/vc-login'><img  alt="VC" src={Vc}/></Link>
                 <span>VC</span>
               </div>
               <div className="login-option">
-                <Link to='/cashier-login'><img alt="Cashier" /></Link>
+                <Link to='/cashier-login'><img alt="Cashier" src={Cash_icon}/></Link>
                 <span>Cashier</span>
               </div>
             </div>

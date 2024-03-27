@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import official_validate from  '../../official_validate'
+import gmValidate from '../../gmValidate';
 
 
 const Register = () => {
@@ -43,16 +44,32 @@ const Register = () => {
 
   };
   const navigate = useNavigate();
-  useEffect(()=>{
-    const data=localStorage.getItem("id");
-    const d=official_validate(data); // check if the id is gm or not
-    if(!d){
-        navigate("/staff-register");
+  // useEffect(async ()=>{
+  //   const data=localStorage.getItem("id");
+  //   const d=await gmValidate(data);
+  //   const success=d.data.success;
+  //   console.log(success); 
+  //   if(success===true){
+  //       navigate("/gm/staff-register");
+  //   }
+  //   else{
+  //       navigate("/Gm-login ");
+  //   }
+  // },[])
+  useEffect(() => {
+    const fetchData = async () => {
+        const id = localStorage.getItem('id');
+        const data = await gmValidate(id);
+        // console.log(data.data.data);
+        if (!data.data.data) {
+            navigate('/Gm-login');
+        }
+        else{
+            navigate('/Gm/staff-register');   
+        }
     }
-    else{
-        navigate("/Gm-login");
-    }
-  },[])
+    fetchData();
+}, [])
 
   return (
     <div className="register-page">

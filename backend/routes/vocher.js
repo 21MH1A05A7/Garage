@@ -30,7 +30,15 @@ const reverse={
 router.post('/addData',fetchUser,voucherController.addData);
 
 // Get ALL Vouchers 
-router.get('/getAllVochers',voucherController.getAllVochers);
+router.get('/getAllGmVochers',voucherController.getAllGmVochers);
+
+router.get('/getAllVcVochers',voucherController.getAllVcVochers);
+
+router.get('/getAllAcaoVochers',voucherController.getAllAcaoVochers);
+
+
+router.get('/getAllCashierVochers',voucherController.getAllCashierVochers);
+// router.get('/getAllCashierVochers',voucherController.getAllCashierVochers);
 
 // router.post('/officialVochers',fetchUser,async(req,res,next)=>{
 
@@ -39,6 +47,13 @@ router.get('/getAllVochers',voucherController.getAllVochers);
 //get user by vocher_id
 //write
 router.get('/getVocherId/:id',fetchUser,voucherController.getVoucherById);
+
+router.get('/getGmVocherId/:id',fetchUser,voucherController.getGmVoucherById);
+
+router.get('/getAcaoVocherId/:id',fetchUser,voucherController.getAcaoVoucherById);
+
+router.get('/getVcVocherId/:id',fetchUser,voucherController.getVcVoucherById);
+
 
 // get vochers of a particular garage staff member
 router.get('/getVochers',fetchUser,voucherController.getVoucher); 
@@ -53,8 +68,9 @@ router.put('/editVocher/:id',fetchUser,voucherController.editVocher);
 
 
 //delete a particular voucher
-router.delete('/deleteVoucher/:id',voucherController.deleteVocher);
+router.delete('/deleteVoucher/:id',fetchUser,voucherController.deleteVocher);
 
+router.put('/setpaidOn/:id',fetchUser,voucherController.setPaidOn);
 
 module.exports=router;
 
